@@ -1,0 +1,36 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background-color: #000000;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+}
+
+.box{
+    border: 1px solid white;
+    height: 500px;
+    width: 500px;
+    background-color: rgb(217, 14, 14);
+}
+.btn{
+    border: 1px solid white;
+    padding: 10px;
+    cursor: pointer;
+    width: 100px;
+    height: 40px;
+    background-color: aqua;
+    color:#000000;
+    font-size: medium;
+}
+.btn:active{
+    scale: calc(0.95);
+}
