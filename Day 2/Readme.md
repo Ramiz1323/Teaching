@@ -44,3 +44,36 @@ If enough balance → deduct
 Else → print “Insufficient balance”  
 
 # 3rd
+
+20. Create a number guessing game where the user must guess a random number between 1–20 within 5 attempts.
+Use Math.random(), a loop for attempts, and compare the guess with the target number.
+
+21. Build a calculator that keeps running until the user types "exit".
+Use a while loop and switch statement for + - * / operations.
+
+22. Ask the user to input marks of 5 subjects and determine total, average, and grade.
+Store marks in an array and use conditions for grading.
+
+23. Create a simple ATM menu system with options: Check Balance, Deposit, Withdraw, Exit.
+Use a looped menu and update a balance variable.
+
+24. Ask the user for a word and count the number of vowels in it.
+Loop through the string and check if each character is a,e,i,o,u.
+
+25. Ask the user to enter 10 numbers and find the largest among them.
+Store numbers in an array and compare using a loop.
+
+26. Reverse a number entered by the user.
+Use % and / operations inside a loop.
+
+27. Check whether a user-entered password is strong based on length, number, and uppercase letter.
+Use string checks or regex conditions.
+
+28. Ask the user to input prices of 5 items and calculate total with discount if total > 1000.
+Use a loop to sum prices and apply percentage discount.
+
+29. Check if a user-entered number is prime.
+Loop from 2 to n-1 and check divisibility.
+
+30. Generate a multiplication table for any number entered by the user up to 10.
+Use a for loop from 1 to 10 and multiply each step.
