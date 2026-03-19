@@ -1,4 +1,4 @@
-@use 'variables';
+@use "variables";
 
 * {
   margin: 0;
@@ -11,6 +11,12 @@ body {
   color: variables.$text-color;
 }
 
+@mixin center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .card {
   width: 300px;
   background-color: #1a1a1a;
@@ -18,7 +24,7 @@ body {
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   margin: 20px auto;
-  text-align: center;
+  @include center;
   height: fit-content;
   img {
     width: 100%;

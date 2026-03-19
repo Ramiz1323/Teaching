@@ -16,7 +16,9 @@ body {
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   margin: 20px auto;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   height: -moz-fit-content;
   height: fit-content;
 }
