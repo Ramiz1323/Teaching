@@ -1,3 +1,17 @@
+import App from "./App.js";
+
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+    App()
+)
+
+
+
+
+
+
+
+
 /* 
 React -> UI
 ReactDOM -> React and DOM communication
@@ -22,8 +36,3 @@ let root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(h1())
 */
 
-import App from "./App.js";
-
-const root = ReactDOM.createRoot(document.getElementById("root"))
-
-root.render(App())
