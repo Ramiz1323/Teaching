@@ -1,35 +1,50 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+import Card from "./components/Card.jsx";
+import New from "./components/New.jsx";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [name, setName] = useState("");
+
+  const [allNames, setAllNames] = useState(["Ramiz"]);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const newNames = [...allNames, name];
+    setAllNames(newNames);
+    console.log(newNames);
+    setName("");
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div>
+      <form
+        onSubmit={(e) => {
+          submitHandler(e);
+        }}
+      >
+        <input
+          type="text"
+          placeholder="Enter Name"
+          value={name}
+          required
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
+        />
+        <button>Submit</button>
+      </form>
+      {allNames.map(function (elem, idx) {
+        return <Card key={idx} name={elem} />;
+      })}
 
-export default App
+      <BrowserRouter>
+        <Routes>
+          <Route path="/new" element={<New />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
+};
+
+export default App;
