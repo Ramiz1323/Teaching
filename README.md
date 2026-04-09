@@ -3,7 +3,7 @@
 -Conditional Rendering
 -useState
 -Two Way Binding
--Localstorage(Optional)
+-Localstorage(Optional), Sass
 -Axios
 -useEffect
 -Routing
