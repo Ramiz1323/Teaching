@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalStorage</title>
+    <style>
+        body{
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <script>
+
+        /**
+         * localStorage.clear() - to clean localstorage
+         * localStorage.setItem('key', 'value') - to set item in localstorage
+         * localStorage.getItem('key') - to get item from localstorage
+         * localStorage.removeItem('key') - to remove item from localstorage
+         * JSON.stringify(obj) -> to convert object to string
+         * JSON.parse(string) -> to convert string to object
+        */
+
+        let obj = {
+            name: 'John',
+            age: 20
+        }
+        localStorage.setItem('obj', obj); // localStorage only store string
+
+        let newObj = JSON.stringify(obj); // convert object to string
+
+        localStorage.setItem('obj', newObj); // store string in localstorage
+
+        console.log(JSON.parse(localStorage.getItem('obj'))); // convert string to object
+
+    </script>
+</body>
+</html>

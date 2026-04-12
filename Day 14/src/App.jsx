@@ -7,11 +7,17 @@ const App = () => {
   const [imageUrl, setImageUrl] = useState("");
   const [desc, setDesc] = useState("");
   const [role, setRole] = useState("");
-  const [users, setUsers] = useState([]);
+  
+  const localData = JSON.parse(localStorage.getItem("users")) || [];
+  console.log(localData);
+
+  const [users, setUsers] = useState(localData);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    setUsers([...users, { name, imageUrl, desc, role }]);
+    const oldUser = [...users, { name, imageUrl, desc, role }];
+    setUsers(oldUser);
+    localStorage.setItem("users", JSON.stringify(oldUser));
     setName("");
     setImageUrl("");
     setDesc("");
@@ -35,7 +41,7 @@ const App = () => {
     const copyUsers = [...users];
     copyUsers.splice(idx, 1);
     setUsers(copyUsers);
-    console.log(users);
+    localStorage.setItem("users", JSON.stringify(copyUsers));
   };
 
   return (
