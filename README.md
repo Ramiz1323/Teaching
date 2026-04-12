@@ -36,7 +36,7 @@
 
 -Deployment with VPS (Backend & Frontend)
 
--Next.js
 -Typescript
+-Next.js
 
 -Advanced Concepts
