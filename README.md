@@ -4,7 +4,7 @@
 -useState
 -Two Way Binding
 -Localstorage(Optional), Sass
--Axios
+-Axios(CSR & SSR)
 -useEffect
 -Routing
 -React Router DOM
