@@ -1,18 +1,21 @@
 import React, { useState } from "react";
-import Navbar from "./components/Navbar.jsx";
+import axios from "axios";
+import Sections from "./components/Sections";
 
 const App = () => {
 
-  const [theme, setTheme] = useState('light')
+  const [data, setData] = useState([]);
 
-  const changeTheme = (newTheme) => {
-    setTheme(newTheme)
+  const getData = async () => {
+    const res = await axios.get("http://localhost:3000/data");
+    setData(res.data);
   }
 
   return (
     <>
-      <h1>Theme is {theme}</h1>
-      <Navbar changeTheme={changeTheme}/>
+      <h1>App Component</h1>
+      <Sections data={data} />
+      <button onClick={getData}>Get Data</button>
     </>
   );
 };

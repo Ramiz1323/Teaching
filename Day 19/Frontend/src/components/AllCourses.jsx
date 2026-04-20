@@ -1,11 +1,11 @@
 import React from "react";
 import Course from "./Course";
 
-const AllCourses = () => {
+const AllCourses = ({ data }) => {
   return (
     <div>
       AllCourses
-      <Course />
+      <Course data={data} />
     </div>
   );
 };

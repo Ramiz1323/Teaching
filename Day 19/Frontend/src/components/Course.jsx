@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
 
-const Course = () => {
+const Course = ({ data }) => {
   return (
-    <div>Course</div>
-  )
-}
+    <div>
+      Course
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+    </div>
+  );
+};
 
-export default Course
+export default Course;

@@ -1,6 +1,14 @@
 import express from "express";
 const app = express();
 const PORT = 3000;
+import cors from "cors";
+
+app.use(cors(
+    {
+        origin: "http://localhost:5174",
+        withCredentials: true
+    }
+));
 
 app.get("/data", (req, res) => {
   res.status(200).json({ 

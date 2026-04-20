@@ -1,10 +1,10 @@
 import React from 'react'
 import AllCourses from './AllCourses'
 
-const Section2 = () => {
+const Section2 = ({ data }) => {
   return (
     <>
-      <AllCourses />
+      <AllCourses data={data} />
     </>
   )
 }
