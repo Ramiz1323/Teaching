@@ -23,6 +23,18 @@
 -Hosting
 -Explore Hosting
 
+-CRUD Operations
+-REST API
+-Postman
+-Express
+-Database
+-MongoDB
+-Model
+-Controller
+-Router
+-Notes on Express
+-Task with Express and MongoDB
+-Integration of Frontend and Backend
 -Authentication
 -JWT
 -Encryption
