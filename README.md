@@ -35,6 +35,7 @@
 -Notes on Express
 -Task with Express and MongoDB
 -Integration of Frontend and Backend
+-Integration Deployment
 -Authentication
 -JWT
 -Encryption
