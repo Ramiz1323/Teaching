@@ -7,7 +7,6 @@ const authSchema = new mongoose.Schema({
         unique: [true, 'Email already exists']
     },
     password: String,
-    token: String
 });
 
 const authModel = mongoose.model('Auth', authSchema);
