@@ -1,6 +1,7 @@
 const imageRouter = require("express").Router();
 const imageModel = require("../models/image.model.js");
 const ImageKit = require("@imagekit/nodejs");
+const { toFile } = require("@imagekit/nodejs");
 
 const multer = require("multer");
 const upload = multer({ storage: multer.memoryStorage() });
@@ -9,8 +10,24 @@ const imagekit = new ImageKit({
     privateKey: process.env.IMAGEKIT_PRIVATE_KEY
 });
 
-imageRouter.post("/upload", upload.single("mcsrijan"), async (req, res) => {
-    console.log(req.body, req.file);
+imageRouter.post("/upload", upload.single("image"), async (req, res) => {
+    const { caption } = req.body;
+
+    const file = await imagekit.files.upload({
+        file: await toFile(Buffer.from(req.file.buffer), 'file'),
+        fileName: "TestFile"
+    })
+
+    const post = await imageModel.create({
+        caption: caption,
+        imageUrl: file.url
+    })
+
+    res.status(201).json({ 
+        message: "Image uploaded successfully",
+        data: post
+     });
+
 });
 
 
