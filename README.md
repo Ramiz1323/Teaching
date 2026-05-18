@@ -45,16 +45,80 @@
 - Encryption
 - Decryption
 - Project(with Auth and Frontend)
+- Deployment with VPS
+- How pm2 and nginx work together
+- Frontend and Backend Deployment with VPS
+- Only Backend Deployment with Render
+- Unknown Code Review
 - Blacklisting
 - Caching
 - Authorisation
 - Validator
+- Apply for internships
 - Email Verification(OAuth2)
 - Project (With Above)
-
-- Deployment with VPS (Backend & Frontend)
-
+- Deployment with VPS
+- How to deploy multiple projects in a single VPS
+- Redux
+- Redux Toolkit
+- Redux with Extensions
+- Redux with React
+- Full Stack Project with Redux
+- Deployment with VPS
+- Socker.IO
+- Project with Socket.IO
+- Deployment with VPS
+- GenAI
+- LLMs
+- Introduction to GenAI
+- Langchain
+- Langchain with GenAI
+- Langchain with React
+- Project with Langchain and GenAI
+- Deployment with VPS
+- Email Verification
+- Email Verification with GenAI(OAuth2)
+- Tools in GenAI
+- Project with GenAI Tools(ChatBot)
+- Chat Integration with GenAI
+- Ai message formatting
+- Integrate
+- RAG
+- How to convert a normal project to advanced project/Production Ready Product
+- Deployment with VPS
+- Execution & Pitfalls of Deployment
+- Development Approach for Production Ready Product
 - Typescript
-- Next.js
+- Small Project with Typescript
+- Deployment with VPS
+- Langgraph
+- Project with Langraph
+- Deployment with VPS
+- Work On Open Source Projects and Unknown Code
+- Google OAuth
+- ECommerce Project with Google OAuth and Payment Integration Production Ready
+- Deployment with VPS
+- HelmetJS
+- Docker 
+- Docker with NodeJS
+- Docker with React
+- Docker Compose
+- Docker with Full Stack Project
+- Development with Docker
+- Docker Production Deployment
+- Collaborate with Other Developers
+- AWS
+- Different Services in AWS
+- How to use AWS Services
+- How it works
+- Deployment with AWS
+- Microservices
+- Microservices with NodeJS
+- Microservices with React
+- Microservices with Docker
+- Microservices with AWS
+- Microservices Architecture
+- Kuber 
+- Kubernetes
 
-- Advanced Concepts
+# - FINAL PROJECT
