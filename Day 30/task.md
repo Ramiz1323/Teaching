@@ -27,5 +27,4 @@
             }
 
 - Update a note
-
 - Delete a note
