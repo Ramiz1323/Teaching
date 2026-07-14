@@ -1,11 +1,14 @@
 const userModel = require("../models/user.model.js");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const blacklistedTokenModel = require("../models/blacklist.model.js");
 
 async function signup(req, res) {
     const { username, email, password } = req.body;
 
-    const isUserExists = await userModel.findOne({ $or: [username, email] });
+    const isUserExists = await userModel.findOne({
+        $or: [{ username }, { email }]
+    });
 
     if (isUserExists) {
         return res.status(400).json({ message: "User already Exists" });
@@ -20,7 +23,7 @@ async function signup(req, res) {
     });
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
-    res.cookies('token', token);
+    res.cookie('token', token);
 
     res.status(201).json({
         message: "SignUp Successfull",
@@ -34,21 +37,66 @@ async function login(req, res) {
     const isUserExists = await userModel.findOne({ email });
 
     if (!isUserExists) {
-        return res.status(401).json({
-            message: "User Does not exists",
-        });
+        return res.status(400).json({ message: "User does not exist" });
     }
 
-    const hashedPassword = bcrypt.hashSync(password, 10);
+    const isPasswordValid = bcrypt.compareSync(password, isUserExists.password);
 
-    if (hashedPassword != isUserExists.password) {
-        return res.status(401).json({
-            message: "Incorrect User Details",
-        });
+    if (!isPasswordValid) {
+        return res.status(400).json({ message: "Invalid credentials" });
     }
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
-    res.cookies('token', token);
+    const blacklistedToken = await blacklistedTokenModel.findOne({ token: req.cookies.token });
+
+    if (blacklistedToken) {
+        return res.status(400).json({ message: "Invalid credentials" });
+    }
+
+    const token = jwt.sign({ id: isUserExists._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
+    res.cookie('token', token);
+
+    res.status(200).json({
+        message: "Login Successfull",
+        user: isUserExists,
+        token,
+    });
 }
 
-module.exports = { signup, login };
+//Blacklisting the token in the MONGODB
+async function logout(req, res) {
+    const token = req.cookies.token;
+
+    const blacklistedToken = await blacklistedTokenModel.create({ token });
+
+    res.clearCookie('token');
+
+    res.status(200).json({
+        message: "Logout Successfull",
+        blacklistedToken,
+    })
+}
+
+async function getme(req, res) {
+    const token = req.cookies.token;
+
+    if (!token) {
+        return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await userModel.findById(decoded.id).select("-password");
+
+    if (!user) {
+        return res.status(404).json({ message: "User not found" });
+    }
+
+    const blacklistedToken = await blacklistedTokenModel.findOne({ token: req.cookies.token });
+
+    if (blacklistedToken) {
+        return res.status(400).json({ message: "Invalid credentials" });
+    }
+
+    res.status(200).json({ user });
+}
+
+module.exports = { signup, login, logout , getme};
