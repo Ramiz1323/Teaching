@@ -2,6 +2,7 @@ const userModel = require("../models/user.model.js");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const blacklistedTokenModel = require("../models/blacklist.model.js");
+const redisClient = require("../config/redis.config.js");
 
 async function signup(req, res) {
     const { username, email, password } = req.body;
@@ -46,10 +47,10 @@ async function login(req, res) {
         return res.status(400).json({ message: "Invalid credentials" });
     }
 
-    const blacklistedToken = await blacklistedTokenModel.findOne({ token: req.cookies.token });
+    const blacklistedToken = await redisClient.get(`blacklist:${req.cookies.token}`);
 
     if (blacklistedToken) {
-        return res.status(400).json({ message: "Invalid credentials" });
+        return res.status(401).json({ message: "Unauthorized (Token is blacklisted)" });
     }
 
     const token = jwt.sign({ id: isUserExists._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
@@ -64,16 +65,20 @@ async function login(req, res) {
 
 //Blacklisting the token in the MONGODB
 async function logout(req, res) {
-    const token = req.cookies.token;
+    const token = req.cookies.token || req.headers.authorization?.split(" ")[1];
 
-    const blacklistedToken = await blacklistedTokenModel.create({ token });
+    if(!token){
+        return res.status(400).json({ message: "Token not provided" });
+    }
+
+    await redisClient.set(`blacklist:${token}`, "true", "EX", 24 * 60 * 60); //24 hrs
 
     res.clearCookie('token');
 
-    res.status(200).json({
-        message: "Logout Successfull",
-        blacklistedToken,
-    })
+    res.status(200).json({ 
+        message: "Logout Successfull (Token Blacklisted in Redis)",
+        token: token
+    });
 }
 
 async function getme(req, res) {
@@ -90,10 +95,12 @@ async function getme(req, res) {
         return res.status(404).json({ message: "User not found" });
     }
 
-    const blacklistedToken = await blacklistedTokenModel.findOne({ token: req.cookies.token });
+    //if the token is blacklisted, return an error
+
+    const blacklistedToken = await redisClient.get(`blacklist:${token}`);
 
     if (blacklistedToken) {
-        return res.status(400).json({ message: "Invalid credentials" });
+        return res.status(401).json({ message: "Unauthorized (Token is blacklisted)" });
     }
 
     res.status(200).json({ user });
