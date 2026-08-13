@@ -65,7 +65,7 @@
 - Redux with React
 - Full Stack Project with Redux
 - Deployment with VPS
-- Socker.IO
+- Socket.IO
 - Project with Socket.IO
 - Deployment with VPS
 - GenAI
