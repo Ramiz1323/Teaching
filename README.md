@@ -53,6 +53,7 @@
 - Blacklisting
 - Caching
 - Authorisation
+- Error Handling
 - Validator
 - Apply for internships
 - Email Verification(OAuth2)
@@ -65,6 +66,8 @@
 - Redux with React
 - Full Stack Project with Redux
 - Deployment with VPS
+- React Optimization
+- Github Mastering
 - Socket.IO
 - Project with Socket.IO
 - Deployment with VPS
@@ -120,7 +123,16 @@
 - Microservices Architecture
 - Kuber 
 - Kubernetes
+- Project
 - Sandbox
+- AI Agents
+- Redis.RateLimting.Jest
+- Access and Refresh Tokens
+- NextJS
+- NextJS Project with TypeScript
+- NextJS Deployment with VPS
+- MCP Servers
 - PWA
+- Solidity
 
 # - FINAL PROJECT
