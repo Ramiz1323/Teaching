@@ -11,7 +11,7 @@ task= [{
     completed: true
 }]
 
-toggle TaskCompletion
+toggle Task
 
 filter -> all , pending, completed
 0 UI
@@ -19,7 +19,17 @@ add, delete...
 
 taskstats.jsx
 tasklist.jsx
-    title-123
-    title2-1234
-taskcard.jsx
 addtask.jsx
+taskcard.jsx
+
+
+
+1. Setup Redux Store
+2. Create taskSlice
+3. Display Redux Tasks
+4. Implement addTask
+5. Implement deleteTask
+6. Implement toggleTask
+7. Create TaskCard
+8. Create TaskStats
+9. Add Filter Functionality
