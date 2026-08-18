@@ -1,9 +1,27 @@
-import React from 'react'
+import AddTask from "./components/AddTask";
+import TaskList from "./components/TaskList";
+import TaskStats from "./components/TaskStats";
 
-const App = () => {
+function App() {
   return (
-    <div>App</div>
-  )
+    <div className="min-h-screen bg-gray-100 py-8 px-4 sm:px-6 lg:px-8 flex justify-center">
+      <main className="w-full max-w-2xl bg-white rounded-2xl shadow-sm border border-gray-200 p-4 sm:p-6 space-y-6">
+        <header>
+          <h1 className="text-2xl font-extrabold text-gray-900 text-center sm:text-left">
+            Task Manager
+          </h1>
+        </header>
+
+        <TaskStats />
+
+        {/* Input Form */}
+        <AddTask />
+
+        {/* Task List Container */}
+        <TaskList />
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;
