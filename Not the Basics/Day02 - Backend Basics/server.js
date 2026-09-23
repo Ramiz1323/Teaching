@@ -10,12 +10,18 @@ const express = require("express");
 const app = express();
 const PORT = 3000;
 
+// Middleware to parse incoming JSON payloads
+app.use(express.json());
+
 /**
  * Route: GET /
  * Description: Homepage / Base route
  */
 app.get("/", (req, res) => {
-    res.send("Hello World");
+    res.status(200).json({
+        success: true,
+        message: "Hello World from Express Server"
+    });
 });
 
 /**
@@ -23,7 +29,11 @@ app.get("/", (req, res) => {
  * Description: Information about the service or teaching module
  */
 app.get("/about", (req, res) => {
-    res.send("About page");
+    res.status(200).json({
+        status: "success",
+        topic: "Backend Basics",
+        session: "Day 02"
+    });
 });
 
 /**
@@ -31,7 +41,7 @@ app.get("/about", (req, res) => {
  * Description: Dedicated home landing route
  */
 app.get("/home", (req, res) => {
-    res.send("Home page");
+    res.status(200).send("Home page");
 });
 
 // Start the server on designated port
