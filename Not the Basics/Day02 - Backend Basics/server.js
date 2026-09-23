@@ -44,6 +44,15 @@ app.get("/home", (req, res) => {
     res.status(200).send("Home page");
 });
 
+// Fallback 404 Handler for undefined routes
+app.use((req, res) => {
+    res.status(404).json({
+        error: "Route Not Found",
+        requestedUrl: req.originalUrl,
+        timestamp: new Date().toISOString()
+    });
+});
+
 // Start the server on designated port
 app.listen(PORT, () => {
     console.log(`Server listening on http://localhost:${PORT}`);
