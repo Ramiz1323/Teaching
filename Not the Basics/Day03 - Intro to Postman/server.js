@@ -49,6 +49,25 @@ app.post('/notes', (req, res) => {
 });
 
 /**
+ * GET /notes/:id
+ * Fetches a single note by numerical identifier
+ */
+app.get('/notes/:id', (req, res) => {
+    const noteId = parseInt(req.params.id, 10);
+    
+    if (isNaN(noteId)) {
+        return res.status(400).json({ error: "Invalid note ID parameter" });
+    }
+
+    const foundNote = notes.find(n => n.id === noteId);
+    if (!foundNote) {
+        return res.status(404).json({ error: "Note not found" });
+    }
+
+    res.status(200).json(foundNote);
+});
+
+/**
  * GET /
  * Fetches the complete list of in-memory notes
  */
