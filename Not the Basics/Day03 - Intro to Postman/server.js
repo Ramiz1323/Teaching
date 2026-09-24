@@ -10,7 +10,6 @@ const app = express();
 const PORT = 3000;
 
 // Middleware to parse JSON request bodies
-// Note: Without express.json(), req.body will be undefined!
 app.use(express.json());
 
 // In-memory data store for notes
@@ -21,15 +20,23 @@ const notes = [
 
 /**
  * POST /notes
- * Creates a new note by reading JSON data from req.body
+ * Creates a new note with input validation
  */
 app.post('/notes', (req, res) => {
     const { note } = req.body;
+
+    // Validate payload existence
+    if (!note || typeof note !== 'string' || note.trim().length === 0) {
+        return res.status(400).json({
+            error: "Bad Request",
+            message: "The 'note' field is required and must be a non-empty string."
+        });
+    }
     
-    // Create new note item with auto-increment ID
     const newNote = {
-        id: notes.length + 1,
-        note: note || req.body.note || 'Untitled note'
+        id: notes.length > 0 ? notes[notes.length - 1].id + 1 : 1,
+        note: note.trim(),
+        createdAt: new Date().toISOString()
     };
 
     notes.push(newNote);
