@@ -54,3 +54,41 @@ exports.getNoteById = async (req, res) => {
         res.status(400).json({ success: false, message: 'Invalid Note ID' });
     }
 };
+
+// Update note by ID (Partial or full update)
+exports.updateNoteById = async (req, res) => {
+    try {
+        const updatedNote = await Note.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true, runValidators: true }
+        );
+        if (!updatedNote) {
+            return res.status(404).json({ success: false, message: 'Note not found' });
+        }
+        res.status(200).json({
+            success: true,
+            message: 'Note updated successfully',
+            data: updatedNote
+        });
+    } catch (error) {
+        res.status(400).json({ success: false, message: error.message });
+    }
+};
+
+// Delete note by ID
+exports.deleteNoteById = async (req, res) => {
+    try {
+        const deletedNote = await Note.findByIdAndDelete(req.params.id);
+        if (!deletedNote) {
+            return res.status(404).json({ success: false, message: 'Note not found' });
+        }
+        res.status(200).json({
+            success: true,
+            message: 'Note deleted from MongoDB',
+            data: deletedNote
+        });
+    } catch (error) {
+        res.status(400).json({ success: false, message: 'Invalid Note ID' });
+    }
+};
