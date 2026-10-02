@@ -2,6 +2,7 @@
  * Notes Controller - Day 07 Models
  * ---------------------------------
  * Handles business logic for Note CRUD operations with MongoDB via Mongoose.
+ * Supports query filtering by category, search text, and completion status.
  */
 
 const Note = require('../models/note.model.js');
@@ -25,13 +26,32 @@ exports.createNote = async (req, res) => {
     }
 };
 
-// Retrieve all notes
+// Retrieve notes with optional search and category filters
 exports.getAllNotes = async (req, res) => {
     try {
-        const notes = await Note.find().sort({ createdAt: -1 });
+        const { category, search, completed } = req.query;
+        const filter = {};
+
+        if (category) {
+            filter.category = category;
+        }
+
+        if (completed !== undefined) {
+            filter.isCompleted = completed === 'true';
+        }
+
+        if (search) {
+            filter.$or = [
+                { title: { $regex: search, $options: 'i' } },
+                { content: { $regex: search, $options: 'i' } }
+            ];
+        }
+
+        const notes = await Note.find(filter).sort({ createdAt: -1 });
         res.status(200).json({
             success: true,
             count: notes.length,
+            filtersApplied: Object.keys(filter).length > 0,
             data: notes
         });
     } catch (error) {
@@ -55,7 +75,7 @@ exports.getNoteById = async (req, res) => {
     }
 };
 
-// Update note by ID (Partial or full update)
+// Update note by ID
 exports.updateNoteById = async (req, res) => {
     try {
         const updatedNote = await Note.findByIdAndUpdate(
