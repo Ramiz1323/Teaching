@@ -2,7 +2,7 @@
  * Day 07 - Note Model Definition
  * -------------------------------
  * Defines the Mongoose schema and model for Notes.
- * Schemas map directly to MongoDB collections and define the shape of documents.
+ * Includes pre-save hooks and text index for full-text search.
  */
 
 const mongoose = require('mongoose');
@@ -36,6 +36,17 @@ const noteSchema = new mongoose.Schema(
         timestamps: true
     }
 );
+
+// Pre-save middleware to capitalize the first letter of title
+noteSchema.pre('save', function (next) {
+    if (this.title && typeof this.title === 'string') {
+        this.title = this.title.charAt(0).toUpperCase() + this.title.slice(1);
+    }
+    next();
+});
+
+// Index title for faster search lookups
+noteSchema.index({ title: 'text', content: 'text' });
 
 // Create and export the Note Mongoose model
 const Note = mongoose.model('Note', noteSchema);
