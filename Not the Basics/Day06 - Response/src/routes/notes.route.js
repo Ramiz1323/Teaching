@@ -1,14 +1,6 @@
-/**
- * Day 06 - Notes Router
- * ----------------------
- * Demonstrating complete CRUD operations (POST, GET, PATCH, DELETE)
- * with structured status codes and informative JSON responses.
- */
-
 const express = require('express');
 const noteRouter = express.Router();
 
-// In-memory data store for testing response flows
 let notes = [];
 
 /**
