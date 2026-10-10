@@ -69,6 +69,25 @@
 - React Optimization
 - Github Mastering
 - Socket.IO
+    - Socket Events
+        - Connection + Disconnection
+        - socket.on + socket.emit
+        - io.emit
+        - socket.broadcast.emit
+    - Ack + Rooms + privateMessage
+        - Acknowledgement
+        - Rooms
+        - join + leave + room events
+        - io.to(room).emit
+        - socket.to(room).emit
+        - Private Message
+    - Namnespaces + Namespace Events
+    - Middlware
+    - Adapters
+    - Redis Adapter
+    - Client Socket Instance
+    - Client Events + Client Middleware
+    - Chat Architecture(Optional)
 - Project with Socket.IO
 - Deployment with VPS
 - GenAI
