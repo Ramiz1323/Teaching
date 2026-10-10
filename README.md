@@ -81,8 +81,12 @@
         - io.to(room).emit
         - socket.to(room).emit
         - Private Message
-    - Namnespaces + Namespace Events
+    - Namespaces + Namespace Events
+        - Chat Events
+        - Admin Events
     - Middleware
+     - Socket Middleware
+     - Authorization Middleware
     - Adapters
     - Redis Adapter
     - Client Socket Instance
