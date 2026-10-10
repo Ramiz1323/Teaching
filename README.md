@@ -82,7 +82,7 @@
         - socket.to(room).emit
         - Private Message
     - Namnespaces + Namespace Events
-    - Middlware
+    - Middleware
     - Adapters
     - Redis Adapter
     - Client Socket Instance
