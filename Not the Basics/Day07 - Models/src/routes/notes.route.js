@@ -4,6 +4,10 @@ const noteRouter = express.Router();
 
 noteRouter.use(express.json());
 
+/**
+ * POST - /notes
+ * Create a note
+ */
 noteRouter.post('/notes', async (req, res) => {
     const { title, description } = req.body;
 
@@ -18,6 +22,10 @@ noteRouter.post('/notes', async (req, res) => {
     })
 });
 
+/**
+ * GET - /notes
+ * View the notes
+ */
 noteRouter.get('/notes', async (req, res) => {
     const notes = await noteModel.find();
 
